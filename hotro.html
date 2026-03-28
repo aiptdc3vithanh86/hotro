@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Trò chơi trả lời tự luận</title>
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f4f4f4;
+}
+.container {
+    width: 90%;
+    margin: auto;
+}
+textarea {
+    width: 80%;
+    height: 80px;
+    font-size: 16px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#answers {
+    margin-top: 20px;
+    text-align: left;
+}
+.answer-box {
+    background: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>📚 Trả lời câu hỏi</h1>
+    <h2 id="question">CSS dùng để làm gì?</h2>
+
+    <textarea id="answer" placeholder="Nhập câu trả lời..."></textarea><br>
+    <button onclick="sendAnswer()">Gửi</button>
+
+    <h2>📊 Danh sách câu trả lời</h2>
+    <div id="answers"></div>
+</div>
+
+<script>
+let answers = [];
+
+function sendAnswer() {
+    let input = document.getElementById("answer");
+    let text = input.value.trim();
+
+    if (text === "") {
+        alert("Chưa nhập câu trả lời!");
+        return;
+    }
+
+    answers.push(text);
+    input.value = "";
+
+    displayAnswers();
+}
+
+function displayAnswers() {
+    let container = document.getElementById("answers");
+    container.innerHTML = "";
+
+    answers.forEach((ans, index) => {
+        let div = document.createElement("div");
+        div.className = "answer-box";
+        div.innerHTML = "<b>HS " + (index+1) + ":</b> " + ans;
+        container.appendChild(div);
+    });
+}
+</script>
+
+</body>
+</html>
